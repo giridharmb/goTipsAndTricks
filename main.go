@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math"
+	"reflect"
 	"sync"
 )
 
@@ -63,6 +65,85 @@ func setGrade(grades map[string]int, gradeName string, gradeValue int) {
 	grades[gradeName] = gradeValue
 }
 
+/* ************** example-6 *************** */
+
+type square struct {
+	length float64
+}
+
+type circle struct {
+	radius float64
+}
+
+// square methods
+
+func (s square) area() float64 {
+	return s.length * s.length
+}
+
+func (s square) circumf() float64 {
+	return s.length * 4
+}
+
+// circle methods
+
+func (c circle) area() float64 {
+	return math.Pi * c.radius * c.radius
+}
+
+func (c circle) circumf() float64 {
+	return 2 * math.Pi * c.radius
+}
+
+// ---
+// (The empty interface denoted by interface{} can hold values of any type.)
+// ---
+
+// generic interface - which works for both the above shapes
+// interface groups types together -> based on their methods
+type shape interface {
+
+	/*
+		interface method signatures
+	*/
+	area() float64
+	circumf() float64
+}
+
+func printShapeInfo(s shape) {
+
+	/* ******************************************************** */
+
+	// (The empty interface denoted by interface{} can hold values of any type.)
+
+	// style-1 : A type switch lets you choose between types
+	switch val := s.(type) {
+	case square:
+		fmt.Printf("\n-- square -- : %v", val)
+	case circle:
+		fmt.Printf("\n-- circle -- : %v", val)
+	default:
+		fmt.Printf("\n-- unknown type -- : %v", val)
+
+	}
+
+	// style-2 :using %T for querying type
+
+	sType := fmt.Sprintf("%T", s)
+	fmt.Printf("\nsType : %v", sType)
+
+	// style-3 : using reflect
+
+	sTypeReflect := reflect.TypeOf(s)
+
+	/* ******************************************************** */
+
+	fmt.Printf("\nsTypeReflect : %v", sTypeReflect)
+
+	fmt.Printf("\nprintShapeInfo : %T", s)
+	fmt.Printf("\narea is : %0.2f", s.area())
+	fmt.Printf("\ncircumference is : %0.2f", s.circumf())
+}
 func main() {
 	fmt.Println("main")
 	log.Printf("hello...")
@@ -243,5 +324,62 @@ func main() {
 	fmt.Printf("\ngrades:\n")
 	dataByteArray, _ := json.MarshalIndent(g, "", "    ")
 	fmt.Println(string(dataByteArray))
+
+	/*
+		output:
+
+		grades:
+		{
+			"English": 9,
+			"Math": 5
+		}
+	*/
+
+	/* ************** example-6 *************** */
+
+	shapes := []shape{
+		square{length: 15.2},
+		circle{radius: 7.5},
+		circle{radius: 12.3},
+		square{length: 4.9},
+	}
+
+	for _, shape := range shapes {
+		printShapeInfo(shape)
+		fmt.Printf("\n---")
+	}
+
+	/*
+		Output:
+
+		-- square -- : {15.2}
+		sType : main.square
+		sTypeReflect : main.square
+		printShapeInfo : main.square
+		area is : 231.04
+		circumference is : 60.80
+		---
+		-- circle -- : {7.5}
+		sType : main.circle
+		sTypeReflect : main.circle
+		printShapeInfo : main.circle
+		area is : 176.71
+		circumference is : 47.12
+		---
+		-- circle -- : {12.3}
+		sType : main.circle
+		sTypeReflect : main.circle
+		printShapeInfo : main.circle
+		area is : 475.29
+		circumference is : 77.28
+		---
+		-- square -- : {4.9}
+		sType : main.square
+		sTypeReflect : main.square
+		printShapeInfo : main.square
+		area is : 24.01
+		circumference is : 19.60
+		---
+	*/
 
 }
