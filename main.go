@@ -46,7 +46,7 @@ func (h *human) setAge(a int) {
 type student = human
 
 func getInfo(h human) {
-	fmt.Printf("\nHi , my name is %v , and my age is %v\n", h.name, h.age)
+	fmt.Printf("\n Hi , my name is %v , and my age is %v\n", h.name, h.age)
 }
 
 /* ************** example-4 *************** */
@@ -119,18 +119,18 @@ func printShapeInfo(s shape) {
 	// style-1 : A type switch lets you choose between types
 	switch val := s.(type) {
 	case square:
-		fmt.Printf("\n-- square -- : %v", val)
+		fmt.Printf("\n -- square -- : %v", val)
 	case circle:
-		fmt.Printf("\n-- circle -- : %v", val)
+		fmt.Printf("\n -- circle -- : %v", val)
 	default:
-		fmt.Printf("\n-- unknown type -- : %v", val)
+		fmt.Printf("\n -- unknown type -- : %v", val)
 
 	}
 
 	// style-2 :using %T for querying type
 
 	sType := fmt.Sprintf("%T", s)
-	fmt.Printf("\nsType : %v", sType)
+	fmt.Printf("\n sType : %v", sType)
 
 	// style-3 : using reflect
 
@@ -138,11 +138,11 @@ func printShapeInfo(s shape) {
 
 	/* ******************************************************** */
 
-	fmt.Printf("\nsTypeReflect : %v", sTypeReflect)
+	fmt.Printf("\n sTypeReflect : %v", sTypeReflect)
 
-	fmt.Printf("\nprintShapeInfo : %T", s)
-	fmt.Printf("\narea is : %0.2f", s.area())
-	fmt.Printf("\ncircumference is : %0.2f", s.circumf())
+	fmt.Printf("\n printShapeInfo : %T", s)
+	fmt.Printf("\n area is : %0.2f", s.area())
+	fmt.Printf("\n circumference is : %0.2f", s.circumf())
 }
 func main() {
 	fmt.Println("main")
@@ -166,19 +166,19 @@ func main() {
 	bs3, _ := json.Marshal(response{Items: people(nil)})
 	bs4, _ := json.Marshal(response{Items: people{}})
 
-	fmt.Printf("\n")
+	fmt.Printf("\n ")
 
-	fmt.Printf("\nbs1:")
-	fmt.Printf("\n%v\n", string(bs1))
+	fmt.Printf("\n bs1:")
+	fmt.Printf("\n %v\n", string(bs1))
 
-	fmt.Printf("\nbs2:")
-	fmt.Printf("\n%v\n", string(bs2))
+	fmt.Printf("\n bs2:")
+	fmt.Printf("\n %v\n", string(bs2))
 
-	fmt.Printf("\nbs3:")
-	fmt.Printf("\n%v\n", string(bs3))
+	fmt.Printf("\n bs3:")
+	fmt.Printf("\n %v\n", string(bs3))
 
-	fmt.Printf("\nbs4:")
-	fmt.Printf("\n%v\n", string(bs4))
+	fmt.Printf("\n bs4:")
+	fmt.Printf("\n %v\n", string(bs4))
 
 	/*
 		Output:
@@ -198,12 +198,12 @@ func main() {
 
 	pRange := p[1:3:4] // [low:high:max] => cap = max-low
 
-	fmt.Printf("\ncapacity : %v\n", cap(pRange))
+	fmt.Printf("\n capacity : %v\n", cap(pRange))
 
 	bs5, _ := json.Marshal(response{Items: pRange})
 
-	fmt.Printf("\nbs5:")
-	fmt.Printf("\n%v\n", string(bs5))
+	fmt.Printf("\n bs5:")
+	fmt.Printf("\n %v\n", string(bs5))
 
 	/*
 		Output:
@@ -220,32 +220,32 @@ func main() {
 		Hobby: "Music",
 	}
 	person1bs, _ := json.Marshal(person1)
-	fmt.Printf("\nperson1bs:")
-	fmt.Printf("\n%v\n", string(person1bs))
+	fmt.Printf("\n person1bs:")
+	fmt.Printf("\n %v\n", string(person1bs))
 
 	person2 := person{
 		Name:  "John",
 		Email: "a@b.com",
 	}
 	person2bs, _ := json.Marshal(person2)
-	fmt.Printf("\nperson2bs:")
-	fmt.Printf("\n%v\n", string(person2bs))
+	fmt.Printf("\n person2bs:")
+	fmt.Printf("\n %v\n", string(person2bs))
 
 	person3 := person{
 		Hobby: "Dance",
 		Email: "a@b.com",
 	}
 	person3bs, _ := json.Marshal(person3)
-	fmt.Printf("\nperson3bs:")
-	fmt.Printf("\n%v\n", string(person3bs))
+	fmt.Printf("\n person3bs:")
+	fmt.Printf("\n %v\n", string(person3bs))
 
 	person4 := person{
 		Hobby: "Dance",
 		Money: 55,
 	}
 	person4bs, _ := json.Marshal(person4)
-	fmt.Printf("\nperson4bs:")
-	fmt.Printf("\n%v\n", string(person4bs))
+	fmt.Printf("\n person4bs:")
+	fmt.Printf("\n %v\n", string(person4bs))
 
 	/*
 		Output:
@@ -291,7 +291,7 @@ func main() {
 	}
 
 	resbs, _ := json.Marshal(res)
-	fmt.Printf("\nresbs:\n%v\n", string(resbs))
+	fmt.Printf("\n resbs:\n%v\n", string(resbs))
 
 	/*
 		Output:
@@ -321,7 +321,7 @@ func main() {
 
 	wg.Wait()
 
-	fmt.Printf("\ngrades:\n")
+	fmt.Printf("\n grades:\n")
 	dataByteArray, _ := json.MarshalIndent(g, "", "    ")
 	fmt.Println(string(dataByteArray))
 
@@ -346,7 +346,7 @@ func main() {
 
 	for _, shape := range shapes {
 		printShapeInfo(shape)
-		fmt.Printf("\n---")
+		fmt.Printf("\n ---")
 	}
 
 	/*
